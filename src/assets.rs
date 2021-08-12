@@ -86,7 +86,7 @@ impl Cpu {
         cpu.set(Cpu::SSE2, is_x86_feature_detected!("sse2"));
         cpu.set(Cpu::POPCNT, is_x86_feature_detected!("popcnt"));
         cpu.set(Cpu::SSE41, is_x86_feature_detected!("sse4.1"));
-        cpu.set(Cpu::AVX2, is_x86_feature_detected!("avx2"));
+        cpu.set(Cpu::AVX2, false && is_x86_feature_detected!("avx2"));
         cpu.set(Cpu::FAST_BMI2, is_x86_feature_detected!("bmi2") && {
             let cpuid = raw_cpuid::CpuId::new();
             match cpuid.get_vendor_info() {
